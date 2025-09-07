@@ -36,7 +36,7 @@ const Login = () => {
     () => {
       const cookie = Cookies.get(USERNAME);
       if (cookie) {
-        navigate("/");
+        navigate("/", replace);
       }
     },
     // eslint-disable-next-line
