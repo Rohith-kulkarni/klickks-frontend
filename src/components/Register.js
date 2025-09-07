@@ -18,8 +18,6 @@ const Register = () => {
         password,
       });
       showToast("Registered successfully!", "success");
-      navigate("/login", { replace: true });
-      Cookies.set(USERNAME);
     } catch (e) {
       showToast(e.response?.data || "Registration failed!", "error");
       console.log(e);
