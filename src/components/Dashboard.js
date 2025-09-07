@@ -22,12 +22,14 @@ const Dashboard = () => {
       if (cookie) {
         const response = await fetch(url, { method: "GET" });
         const bod = await response.json();
+        console.log(userData);
         setUserData(bod);
       } else {
         navigate("/login");
       }
     };
     onHit();
+    // eslint-disable-next-line
   }, []);
 
   return (
