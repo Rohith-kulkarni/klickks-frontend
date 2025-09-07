@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import { USERNAME } from "../utils/constants";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -21,7 +22,7 @@ const Login = () => {
         }
       );
       if (response.status === 200) {
-        Cookies.set("username", username, { expires: 30 });
+        Cookies.set(USERNAME, username, { expires: 30 });
         navigate("/");
       }
     } catch (e) {
@@ -30,6 +31,17 @@ const Login = () => {
       console.log(e);
     }
   };
+
+  useEffect(
+    () => {
+      const cookie = Cookies.get(USERNAME);
+      if (cookie) {
+        navigate("/");
+      }
+    },
+    // eslint-disable-next-line
+    []
+  );
 
   return (
     <div className="h-screen flex justify-center items-center bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600">

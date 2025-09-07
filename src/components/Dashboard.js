@@ -2,24 +2,25 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { LogOut, Bell, CheckCircle, Activity } from "lucide-react";
+import { USERNAME } from "../utils/constants";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const url = "https://klickks-backend-qpwf.onrender.com/";
   const [userData, setUserData] = useState(null);
 
-  const username = Cookies.get("username");
+  const username = Cookies.get(USERNAME);
 
   const onLogout = () => {
-    if (Cookies.get("username")) {
-      Cookies.remove("username");
+    if (Cookies.get(USERNAME)) {
+      Cookies.remove(USERNAME);
       navigate("/login");
     }
   };
 
   useEffect(() => {
     const onHit = async () => {
-      const cookie = Cookies.get("username");
+      const cookie = Cookies.get(USERNAME);
       if (cookie) {
         try {
           const response = await fetch(url, { method: "GET" });

@@ -1,6 +1,8 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import { USERNAME } from "../utils/constants";
 
 const Register = () => {
   const [username, setUserName] = useState("");
@@ -19,6 +21,17 @@ const Register = () => {
       console.log(e);
     }
   };
+
+  useEffect(
+    () => {
+      const cookie = Cookies.get(USERNAME);
+      if (cookie) {
+        navigate("/");
+      }
+    },
+    // eslint-disable-next-line
+    []
+  );
 
   return (
     <div className="h-screen flex justify-center items-center bg-gradient-to-tr from-green-500 via-teal-500 to-cyan-500">
