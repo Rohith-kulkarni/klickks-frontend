@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { USERNAME } from "../utils/constants";
+import { showToast } from "../utils/toast";
 
 const Register = () => {
   const [username, setUserName] = useState("");
@@ -16,8 +17,10 @@ const Register = () => {
         username,
         password,
       });
+      showToast("Registered successfully!", "success");
       navigate("/login", { replace: true });
     } catch (e) {
+      showToast(e.response?.data || "Registration failed!", "error");
       console.log(e);
     }
   };

@@ -3,6 +3,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { USERNAME } from "../utils/constants";
+import { showToast } from "../utils/toast";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -23,6 +24,7 @@ const Login = () => {
       );
       if (response.status === 200) {
         Cookies.set(USERNAME, username, { expires: 30 });
+        showToast("Login successful!", "success");
         navigate("/", { replace: true });
       }
     } catch (e) {
