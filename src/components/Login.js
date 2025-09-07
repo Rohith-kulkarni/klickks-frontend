@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, replace } from "react-router-dom";
 import { USERNAME } from "../utils/constants";
 
 const Login = () => {
@@ -23,7 +23,7 @@ const Login = () => {
       );
       if (response.status === 200) {
         Cookies.set(USERNAME, username, { expires: 30 });
-        navigate("/");
+        navigate("/", replace);
       }
     } catch (e) {
       setShowErr(true);

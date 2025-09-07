@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { replace, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { USERNAME } from "../utils/constants";
 
@@ -16,7 +16,7 @@ const Register = () => {
         username,
         password,
       });
-      navigate("/login");
+      navigate("/login", replace);
     } catch (e) {
       console.log(e);
     }
