@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { replace, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { USERNAME } from "../utils/constants";
 
@@ -16,7 +16,7 @@ const Register = () => {
         username,
         password,
       });
-      navigate("/login", replace);
+      navigate("/login", { replace: true });
     } catch (e) {
       console.log(e);
     }
@@ -26,7 +26,7 @@ const Register = () => {
     () => {
       const cookie = Cookies.get(USERNAME);
       if (cookie) {
-        navigate("/", replace);
+        navigate("/", { replace: true });
       }
     },
     // eslint-disable-next-line
